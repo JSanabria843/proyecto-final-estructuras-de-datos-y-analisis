@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos de ordenamiento</title>
+    <link rel="stylesheet" href="stylesalgoritmos.css">
+</head>
+<body>
+    <div class="container">
+        <button class="toggle-btn">Mostrar primer algoritmo de ordenamiento</button>
+        <div class="code-block">
+            <pre><code>
+// Metodo Buble Sort
+function generateRandomNumbers() {
+    const randomNumbers = [];
+    const min = 0;
+    const max = 10000;
+    const count = 10000;
+    for (let i = 0; i < count; i++) {
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    randomNumbers.push(randomNumber);
+    }
+    return randomNumbers;
+   }
+   function bubbleSort(array) {
+    let len = array.length;
+    for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len - 1 - i; j++) {
+    if (array[j] > array[j + 1]) {
+    // Swap the elements
+    let temp = array[j];
+    array[j] = array[j + 1];
+    array[j + 1] = temp;
+    }
+    }
+    }
+    return array;
+   }
+   const randomNumbersArray = generateRandomNumbers();
+   const start = performance.now();
+   const sortedArray = bubbleSort(randomNumbersArray);
+   const end = performance.now();
+   console.log(`Time taken to sort 10,000 numbers using Bubble Sort: 
+   ${end - start} milliseconds`);
+   console.log(sortedArray);
+            </code></pre>
+        </div>
+
+        <button class="toggle-btn">Mostrar segundo algoritmo de ordenamiento</button>
+        <div class="code-block">
+            <pre><code>
+// Selection Sort
+function generateRandomNumbers() {
+    const randomNumbers = [];
+    const min = 0;
+    const max = 10000;
+    const count = 10000;
+    for (let i = 0; i < count; i++) {
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    randomNumbers.push(randomNumber);
+    }
+    return randomNumbers;
+   }
+   function selectionSort(array) {
+    let len = array.length;
+    for (let i = 0; i < len - 1; i++) {
+    let minIndex = i;
+    for (let j = i + 1; j < len; j++) {
+    if (array[j] < array[minIndex]) {
+    minIndex = j;
+    }
+    }
+    if (minIndex !== i) {
+    let temp = array[i];
+    array[i] = array[minIndex];
+    array[minIndex] = temp;
+    }
+    }
+    return array;
+   }
+   const randomNumbersArray = generateRandomNumbers();
+   const start = performance.now();
+   const sortedArray = selectionSort(randomNumbersArray);
+   const end = performance.now();
+   console.log(`Time taken to sort 10,000 numbers using Selection Sort: 
+   ${end - start} milliseconds`);
+   console.log(sortedArray)
+            </code></pre>
+        </div>
+
+        <button class="toggle-btn">Mostrar tercer algoritmo de ordenamiento</button>
+        <div class="code-block">
+            <pre><code>
+// Insertion Sort 
+function generateRandomNumbers() {
+    const randomNumbers = [];
+    const min = 0;
+    const max = 10000;
+    const count = 10000;
+    for (let i = 0; i < count; i++) {
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    randomNumbers.push(randomNumber);
+    }
+    return randomNumbers;
+   }
+   function insertionSort(array) {
+    let len = array.length;
+    for (let i = 1; i < len; i++) {
+    let key = array[i];
+    let j = i - 1;
+    while (j >= 0 && array[j] > key) {
+    array[j + 1] = array[j];
+    j--;
+    }
+    array[j + 1] = key;
+    }
+    return array;
+   }
+   const randomNumbersArray = generateRandomNumbers();
+   const start = performance.now();
+   const sortedArray = insertionSort(randomNumbersArray);
+   const end = performance.now();
+   console.log(`Time taken to sort 10,000 numbers using Insertion Sort: 
+   ${end - start} milliseconds`);
+   console.log(sortedArray)
+};
+
+            </code></pre>
+        </div>
+
+        <button class="toggle-btn">Mostrar cuarto algoritmo de ordenamiento</button>
+        <div class="code-block">
+            <pre><code>
+// Merge Sort
+function generateRandomNumbers() {
+    const randomNumbers = [];
+    const min = 0;
+    const max = 10000;
+    const count = 10000;
+    for (let i = 0; i < count; i++) {
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    randomNumbers.push(randomNumber);
+    }
+    return randomNumbers;
+   }
+   function mergeSort(array) {
+    if (array.length <= 1) {
+    return array;
+    }
+    const middle = Math.floor(array.length / 2);
+    const left = array.slice(0, middle);
+    const right = array.slice(middle);
+    return merge(mergeSort(left), mergeSort(right));
+   }
+   function merge(left, right) {
+    let resultArray = [], leftIndex = 0, rightIndex = 0;
+    while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+    resultArray.push(left[leftIndex]);
+    leftIndex++;
+    } else {
+    resultArray.push(right[rightIndex]);
+    rightIndex++;
+    }
+    }
+    return resultArray
+    .concat(left.slice(leftIndex))
+    .concat(right.slice(rightIndex));
+   }
+   // Generate the random numbers
+   const randomNumbersArray = generateRandomNumbers();
+   // Measure the performance of Merge Sort
+   const start = performance.now();
+   const sortedArray = mergeSort(randomNumbersArray);
+   const end = performance.now();
+   console.log(`Time taken to sort 10,000 numbers using Merge Sort: 
+   ${end - start} milliseconds`);
+   console.log(sortedArray)
+            </code></pre>
+        </div>
+
+        <button class="toggle-btn">Mostrar quinto algoritmo de ordenamiento</button>
+        <div class="code-block">
+            <pre><code>
+// Quick sort
+function generateRandomNumbers() {
+    const randomNumbers = [];
+    const min = 0;
+    const max = 10000;
+    const count = 10000;
+    for (let i = 0; i < count; i++) {
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    randomNumbers.push(randomNumber);
+    }
+    return randomNumbers;
+   }
+   function quickSort(array) {
+    if (array.length <= 1) {
+    return array;
+    }
+    const pivot = array[Math.floor(array.length / 2)];
+    const left = [];
+    const right = [];
+    const equal = [];
+    for (let num of array) {
+    if (num < pivot) {
+    left.push(num);
+    } else if (num > pivot) {
+    right.push(num);
+    } else {
+    equal.push(num);
+    }
+    }
+    return [...quickSort(left), ...equal, ...quickSort(right)];
+   }
+   // Generate the random numbers
+   const randomNumbersArray = generateRandomNumbers();
+   // Measure the performance of Quick Sort
+   const start = performance.now();
+   const sortedArray = quickSort(randomNumbersArray);
+   const end = performance.now();
+   console.log(`Time taken to sort 10,000 numbers using Quick Sort:
+   ${end - start} milliseconds`);
+   console.log(sortedArray)
+            </code></pre>
+        </div>
+    </div>
+    <script src="algoritmos.js"></script>
+</body>
+</html>
